@@ -14,10 +14,10 @@ class TweetSentimentClassifier:
             "ar": "Arabic",
             "fr": "French",
             "de": "German",
-            "hi": "hindi",
-            "it": "italian",
-            "sp": "spanish",
-            "pt": "portuguese"
+            "hi": "Hindi",
+            "it": "Italian",
+            "sp": "Spanish",
+            "pt": "Portuguese"
         }
         self.models = {
             "model": AutoModelForSequenceClassification.from_pretrained(self.model_name),
