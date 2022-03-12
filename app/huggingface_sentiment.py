@@ -25,7 +25,7 @@ class TweetSentimentClassifier:
             "config": AutoConfig.from_pretrained(self.model_name)
         }
 
-    def preprocess(text):
+    def preprocess(self, text):
         new_text = []
         for t in text.split(" "):
             t = '@user' if t.startswith('@') and len(t) > 1 else t
