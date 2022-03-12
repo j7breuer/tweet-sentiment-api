@@ -8,7 +8,8 @@ api = Namespace("Tweet Sentiment Models", description = "namespace for tweet sen
 #========================#
 
 sentiment_single_schema = {
-    "text": fields.String(description = "Text to be analyzed by API", required = True)
+    "text": fields.String(description = "Text to be analyzed by API", required = True),
+    "language": fields.String(description = "Language of text to be analyzed by API", required = True)
 }
 
 sentiment_single_model = api.model("sentiment_single", sentiment_single_schema)
