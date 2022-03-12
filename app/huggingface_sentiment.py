@@ -35,11 +35,11 @@ class TweetSentimentClassifier:
 
     def sentiment_single(self, text):
         # Simple preprocessing step
-        text = self.preprocess(text)
+        clean_text = self.preprocess(text)
 
         # Run tokenizer/model
-        encoded_input = self.tokenizer(text, return_tensors = 'pt')
-        output = self.model(**encoded_input)
+        encoded_input = self.models["tokenizer"](clean_text, return_tensors = 'pt')
+        output = self.models["model"](**encoded_input)
 
         # Gather scores
         scores = output[0][0].detach().numpy()
@@ -47,7 +47,39 @@ class TweetSentimentClassifier:
         
         # Generate output dict
         oupt_dict = {
-            self.config.id2label[0]: scores[0],
-            self.config.id2label[1]: scores[1],
-            self.config.id2label[2]: scores[2]
+            "inpt_text": text,
+            self.models["config"].id2label[0]: scores[0],
+            self.models["config"].id2label[1]: scores[1],
+            self.models["config"].id2label[2]: scores[2],
         }
+
+        # Return to user
+        return oupt_dict
+
+    def sentiment_batch(self, text_list):
+
+        # Preprocessing for analysis
+        clean_text_list = [self.preprocess(x) for x in text_list]
+        oupt_list = []
+        counter = 0
+
+        # Loop through cleaned text to analyze
+        for x in clean_text_list:
+            # Run tokenizer/model
+            encoded_input = self.models["tokenizer"](x, return_tensors = 'pt')
+            cur_output = self.models["model"](**encoded_input)
+
+            # Gather scores
+            cur_scores = cur_output[0][0].detach().numpy()
+            cur_scores = softmax(cur_scores)
+            oupt_dict = {
+                "inpt_text": text_list[counter],
+                self.models["config"].id2label[0]: cur_scores[0],
+                self.models["config"].id2label[1]: cur_scores[1],
+                self.models["config"].id2label[2]: cur_scores[2],
+            }
+            counter += 1
+            oupt_list.append(oupt_dict)
+        
+        # Return to user
+        return oupt_list
