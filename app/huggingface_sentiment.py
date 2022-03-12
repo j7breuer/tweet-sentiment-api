@@ -26,14 +26,31 @@ class TweetSentimentClassifier:
         }
 
     def preprocess(self, text):
+        '''
+        desc:
+            Given an input text in the form of a tweet, return the tweet cleaned
+        inpt:
+            text [str]: tweet to be cleaned
+        oupt:
+            [text]: text with usernames and urls removed
+        '''
         new_text = []
         for t in text.split(" "):
-            t = '@user' if t.startswith('@') and len(t) > 1 else t
-            t = 'http' if t.startswith('http') else t
+            t = '@user' if t.startswith('@') and len(t) > 1 else t # Replace this with a better regex pattern...
+            t = 'http' if t.startswith('http') else t # Replace this with a better regex pattern...
             new_text.append(t)
         return " ".join(new_text)
 
     def sentiment_single(self, text):
+        '''
+        desc:
+            Given an input text in the form of a cleaned tweet, analyze the text
+            for sentiment scores - positive/neutral/negative
+        inpt: 
+            text [str]: cleaned tweet
+        oupt:
+            oupt_dict [dict]: key/value pairs of negative, neutral, and positive scores
+        '''
         # Simple preprocessing step
         clean_text = self.preprocess(text)
 
@@ -56,7 +73,15 @@ class TweetSentimentClassifier:
         return oupt_dict
 
     def sentiment_batch(self, text_list):
-
+        '''
+        desc:
+            Given an input text in the form of a cleaned tweet, analyze the text
+            for sentiment scores - positive/neutral/negative
+        inpt: 
+            text_list [list]: list of cleaned tweets
+        oupt:
+            oupt_list [list]: list of dicts with key/value pairs of negative, neutral, and positive scores
+        '''
         # Preprocessing for analysis
         clean_text_list = [self.preprocess(x) for x in text_list]
         oupt_list = []
