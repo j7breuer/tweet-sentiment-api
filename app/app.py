@@ -22,23 +22,29 @@ class sentiment_single(Resource):
     @api.expect(sentiment_models.models['sentiment_single'], validate = True)
     def post(self):
         data = api.payload
+        inpt_text = data["text"]
+        inpt_lang = data["language"]
 
         # Check language of text
-        if not data["language"] in tsc.languages_supported.keys():
-            abort(400, f"{data['Language']} not in languages supported by {tsc.model_name}")
+        if not inpt_lang in tsc.languages_supported.keys():
+            abort(400, f"{inpt_lang} not in languages supported by {tsc.model_name}.")
 
         # Run sentiment model
-        oupt = tsc.sentiment_single(data['text'])
+        oupt = tsc.sentiment_single(inpt_text)
 
+        # Send response
         return jsonify(
             {
-                "message": f"",
+                "message": f"Successful sentiment analysis of text",
                 "data": {
                     "request": {
-                        "text": data['text'],
-                        "language": data['language']
+                        "text": inpt_text,
+                        "language": inpt_lang
                     },
-                    "response": oupt
+                    "response": str(oupt)
                 }
             }
         )
+
+if __name__ in "__main__":
+    app.run(debug  = True)

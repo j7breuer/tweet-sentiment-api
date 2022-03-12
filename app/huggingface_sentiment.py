@@ -47,7 +47,6 @@ class TweetSentimentClassifier:
         
         # Generate output dict
         oupt_dict = {
-            "inpt_text": text,
             self.models["config"].id2label[0]: scores[0],
             self.models["config"].id2label[1]: scores[1],
             self.models["config"].id2label[2]: scores[2],
@@ -61,7 +60,6 @@ class TweetSentimentClassifier:
         # Preprocessing for analysis
         clean_text_list = [self.preprocess(x) for x in text_list]
         oupt_list = []
-        counter = 0
 
         # Loop through cleaned text to analyze
         for x in clean_text_list:
@@ -73,12 +71,10 @@ class TweetSentimentClassifier:
             cur_scores = cur_output[0][0].detach().numpy()
             cur_scores = softmax(cur_scores)
             oupt_dict = {
-                "inpt_text": text_list[counter],
                 self.models["config"].id2label[0]: cur_scores[0],
                 self.models["config"].id2label[1]: cur_scores[1],
                 self.models["config"].id2label[2]: cur_scores[2],
             }
-            counter += 1
             oupt_list.append(oupt_dict)
         
         # Return to user
