@@ -4,7 +4,7 @@ import sys
 
 sys.path.append("../app")
 
-from app import app as root_app
+from ./app import app as root_app
 
 @pytest.fixture(scope = "session")
 def client():
