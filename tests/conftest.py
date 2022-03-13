@@ -2,7 +2,7 @@
 import pytest
 import sys
 
-sys.path.append("C:/Users/J Breuer/OneDrive/Documents/GitHub/tweet-sentiment-api/app")
+sys.path.append("../app")
 
 from app import app as root_app
 
