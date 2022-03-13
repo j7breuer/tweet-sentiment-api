@@ -64,9 +64,9 @@ class TweetSentimentClassifier:
         
         # Generate output dict
         oupt_dict = {
-            self.models["config"].id2label[0]: scores[0],
-            self.models["config"].id2label[1]: scores[1],
-            self.models["config"].id2label[2]: scores[2],
+            self.models["config"].id2label[0]: float('%.5f' % scores[0]),
+            self.models["config"].id2label[1]: float('%.5f' % scores[1]),
+            self.models["config"].id2label[2]: float('%.5f' % scores[2])
         }
 
         # Return to user
@@ -96,9 +96,9 @@ class TweetSentimentClassifier:
             cur_scores = cur_output[0][0].detach().numpy()
             cur_scores = softmax(cur_scores)
             oupt_dict = {
-                self.models["config"].id2label[0]: cur_scores[0],
-                self.models["config"].id2label[1]: cur_scores[1],
-                self.models["config"].id2label[2]: cur_scores[2],
+                self.models["config"].id2label[0]: float('%.5f' % cur_scores[0]),
+                self.models["config"].id2label[1]: float('%.5f' % cur_scores[1]),
+                self.models["config"].id2label[2]: float('%.5f' % cur_scores[2])
             }
             oupt_list.append(oupt_dict)
         
