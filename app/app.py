@@ -35,13 +35,13 @@ class sentiment_single(Resource):
         # Send response
         return jsonify(
             {
-                "message": f"Successful sentiment analysis of text",
+                "message": "Successful sentiment analysis of text",
                 "data": {
                     "request": {
                         "text": inpt_text,
                         "language": inpt_lang
                     },
-                    "response": str(oupt)
+                    "response": oupt
                 }
             }
         )

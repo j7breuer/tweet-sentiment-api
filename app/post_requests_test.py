@@ -5,8 +5,8 @@ import sys
 
 # Create body for testing
 post_body = {
-    "text": "I love you!",
-    "language": "en"
+    "text": "YESSSSSSSSS!!!!!!!!!!! A BRAVE HEADER FROM LUIS DIAZ!!!!!!!!!!!",
+    "language": "abcd"
 }
 
 headers = {'Content-Type': 'application/json'}
