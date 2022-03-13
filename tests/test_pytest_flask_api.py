@@ -18,5 +18,5 @@ def test_fail_language_sentiment_single(client, fail_language_sentiment_single):
     expected_request = req_resp['request']
     response = app.post("/sentiment/single", json = expected_request)
     response_json = response.json
-    assert response.status_code == 500
-    assert response_json == "sample"
+    assert response.status_code == 400
+    assert response_json == expected_response
