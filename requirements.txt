@@ -6,3 +6,4 @@ requests==2.25.0
 scipy==1.5.4
 transformers==4.6.1
 torch==1.9.0
+sentencepiece==0.1.96
