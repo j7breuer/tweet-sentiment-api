@@ -1,4 +1,4 @@
-FROM http://192.168.50.242:8347/repository/pypi-all/
+#FROM http://192.168.50.242:8347/repository/pypi-all/
 
 LABEL maintainer="j7breuer@gmail.com"
 
