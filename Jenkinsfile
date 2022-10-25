@@ -21,6 +21,14 @@ pipeline {
                 echo '\n==========================\n[END] PyTest Unit Tests...\n==========================\n'
             }
         }
+        stage('Sonar Scans') {
+            def scannerHome = tool 'sonar';
+            withSonarQubeEnv() {
+                echo '\n============================\n[START] Sonar Scans...\n============================\n'
+                sh '${scannerHome}/bin/sonar-scanner'
+                echo '\n============================\n[END] Sonar Scans...\n============================\n'
+            }
+        }
         stage('Docker Build') {
             steps {
                 echo '\n=======================\n[START] Docker Build...\n=======================\n'
