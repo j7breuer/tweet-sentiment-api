@@ -22,11 +22,11 @@ pipeline {
             }
         }
         stage('Sonar Scans') {
+            environment {
+                scannerHome = tool 'SonarQubeScanner'
+            }
             steps {
-                environment {
-                    scannerHome = tool 'sonar';
-                }
-                withSonarQubeEnv() {
+                withSonarQubeEnv('SonarQube-8.3.1') {
                     echo '\n============================\n[START] Sonar Scans...\n============================\n'
                     sh '${scannerHome}/bin/sonar-scanner'
                     echo '\n============================\n[END] Sonar Scans...\n============================\n'
