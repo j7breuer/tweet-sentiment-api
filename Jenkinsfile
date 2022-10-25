@@ -22,11 +22,13 @@ pipeline {
             }
         }
         stage('Sonar Scans') {
-            def scannerHome = tool 'sonar';
-            withSonarQubeEnv() {
-                echo '\n============================\n[START] Sonar Scans...\n============================\n'
-                sh '${scannerHome}/bin/sonar-scanner'
-                echo '\n============================\n[END] Sonar Scans...\n============================\n'
+            steps {
+                def scannerHome = tool 'sonar';
+                withSonarQubeEnv() {
+                    echo '\n============================\n[START] Sonar Scans...\n============================\n'
+                    sh '${scannerHome}/bin/sonar-scanner'
+                    echo '\n============================\n[END] Sonar Scans...\n============================\n'
+                }
             }
         }
         stage('Docker Build') {
