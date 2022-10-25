@@ -23,8 +23,8 @@ pipeline {
         }
         stage('Sonar Scans') {
             steps {
-                script {
-                    def scannerHome = tool 'sonar';
+                environment {
+                    scannerHome = tool 'sonar';
                 }
                 withSonarQubeEnv() {
                     echo '\n============================\n[START] Sonar Scans...\n============================\n'
