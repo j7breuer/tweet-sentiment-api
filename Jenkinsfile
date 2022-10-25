@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Environment Setup') {
             steps {
-                echo '\n=======================\n[START] Initializing...\n======================\n'
+                echo '\n=======================\n[START] Initializing...\n=======================\n'
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL} \n"
                 echo "Installing PyTorch..."
                 sh 'pip3.9 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu'
