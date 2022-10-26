@@ -31,9 +31,9 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv('SonarQube-8.3.1') {
-                    echo '\n============================\n[START] Sonar Scans...\n============================\n'
+                    echo '\n======================\n[START] Sonar Scans...\n======================\n'
                     sh '/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQubeScanner-4.7.0/bin/sonar-scanner'
-                    echo '\n============================\n[END] Sonar Scans...\n============================\n'
+                    echo '\n====================\n[END] Sonar Scans...\n====================\n'
                 }
             }
         }
