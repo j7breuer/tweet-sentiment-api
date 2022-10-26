@@ -10,7 +10,7 @@ pipeline {
                     echo "\n<--------- Installing PyTorch... --------->"
                     sh 'pip3.9 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu'
                     echo "\n<--------- Installing requirements.txt --------->"
-                    sh 'pip3.9 install --no-cache-dir --index-url http://192.168.50.25:8081/repository/Workstation_PyPi/ -r requirements.txt'
+                    sh 'pip3.9 install -r requirements.txt --no-cache-dir --index-url http://192.168.50.25:8081/repository/Workstation_PyPi/'
                     echo '\n=====================\n[END] Initializing...\n=====================\n'
                 }
             }
