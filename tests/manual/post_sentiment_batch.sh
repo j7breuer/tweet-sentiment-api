@@ -1,0 +1,2 @@
+#!/bin/bash
+curl -i -H "Content-Type: application/json" -X POST -d [{\"language\": \"en\", \"text\": \"I love creating Python Flask APIs\"},{\"language\": \"en\", \"text\": \"I really hate creating Python Flask APIs\"}] http://127.0.0.1:5000/sentiment/batch
