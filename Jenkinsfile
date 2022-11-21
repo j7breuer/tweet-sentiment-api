@@ -41,7 +41,17 @@ pipeline {
             steps {
                 echo '\n=======================\n[START] Docker Build...\n=======================\n'
                 echo 'Running docker build...'
-                echo '\n=====================\n[END] Docker Build...\n=====================\n'
+                sh "docker build -t analytics/tweet_sentiment_api:latest ."
+                echo '\n=====================\n[END] Docker Push to Nexus...\n=====================\n'
+            }
+        }
+        stage('Docker Tag and Push to Nexus') {
+            steps {
+                echo '\n=======================\n[START] Docker Push to Nexus...\n=======================\n'
+                echo 'Tagging docker build...'
+                sh "docker tag tweet_sentiment_api 192.168.50.25:5000/analytics/tweet_sentiment_api/httpd:version${env.BUILD_ID}"
+                sh "docker push 192.168.50.25:5000/analytics/tweet_sentiment_api/httpd:version${env.BUILD_ID}"
+                echo '\n=====================\n[END] Docker Push to Nexus...\n=====================\n'
             }
         }
         stage('Docker Publish') {
