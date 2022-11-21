@@ -1,0 +1,59 @@
+{
+    "creators": {
+        "J Breuer": "j7breuer@gmail.com"
+    },
+    "current_version": "1.0.0",
+    "help_router": {
+        "help_message": "This is an API meant to conduct basic sentiment classification between 8 languages using various transformer based tweet sentiment models.",
+        "languages": {
+            "en": "English",
+            "ar": "Arabic",
+            "fr": "French",
+            "de": "German",
+            "hi": "Hindi",
+            "it": "Italian",
+            "sp": "Spanish",
+            "pt": "Portuguese"
+        },
+        "single": {
+            "request_example": {
+                "language": "en",
+                "text": "I love creating Python Flask APIs"
+            },
+            "response_example": {
+                "data": {
+                    "request": {
+                        "language": "en",
+                        "text": "I love creating Python Flask APIs"
+                    },
+                    "response": {
+                        "Negative": 0.01408,
+                        "Neutral": 0.09497,
+                        "Positive": 0.89095
+                    }
+                },
+                "message": "Successful sentiment analysis of text"
+            }
+        },
+        "batch": {
+            "request_example": {
+                "language": "en",
+                "text": "I love creating Python Flask APIs"
+            },
+            "response_example": {
+                "data": {
+                    "request": {
+                        "language": "en",
+                        "text": "I love creating Python Flask APIs"
+                    },
+                        "response": {
+                        "Negative": 0.01408,
+                        "Neutral": 0.09497,
+                        "Positive": 0.89095
+                    }
+                },
+                "message": "Successful sentiment analysis of text"
+            }              
+        }
+    }
+}
