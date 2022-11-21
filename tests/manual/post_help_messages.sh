@@ -6,6 +6,6 @@ help_endpoints=(
     http://127.0.0.1:5000/help/languages
 )
 
-for url in "${help_endpoints}[@]"; do
+for url in "${help_endpoints[@]}"; do
     curl "$url"
 done
