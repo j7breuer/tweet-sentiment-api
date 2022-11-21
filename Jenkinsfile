@@ -41,7 +41,9 @@ pipeline {
             steps {
                 echo '\n=======================\n[START] Docker Build...\n=======================\n'
                 echo 'Running docker build...'
-                sh "docker build -t analytics/tweet_sentiment_api:latest ."
+                script {
+                    def buildImage = docker.build("analytics/tweet_sentiment_api:${env.BUILD_ID}")
+                }
                 echo '\n=====================\n[END] Docker Push to Nexus...\n=====================\n'
             }
         }
