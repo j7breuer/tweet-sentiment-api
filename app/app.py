@@ -14,7 +14,7 @@ import os
 tsc = TweetSentimentClassifier()
 sys.stdout.write(os.getcwd())
 # Load help messages
-with open("../app/data/metadata/help_metadata.json", encoding = "utf-8") as help_metadata:
+with open("./app/data/metadata/help_metadata.json", encoding = "utf-8") as help_metadata:
     help_metadata_json = json.load(help_metadata)
 
 # Load the API
