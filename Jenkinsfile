@@ -42,7 +42,7 @@ pipeline {
                 echo '\n=======================\n[START] Docker Build...\n=======================\n'
                 echo 'Running docker build...'
                 script {
-                    def buildImage = docker.build("analytics/tweet_sentiment_api:${env.BUILD_ID}")
+                    def buildImage = docker.build("tweet_sentiment_api:${env.BUILD_ID}")
                 }
                 echo '\n=====================\n[END] Docker Push to Nexus...\n=====================\n'
             }
@@ -51,8 +51,12 @@ pipeline {
             steps {
                 echo '\n=======================\n[START] Docker Push to Nexus...\n=======================\n'
                 echo 'Tagging docker build...'
-                sh "docker tag tweet_sentiment_api 192.168.50.25:5000/analytics/tweet_sentiment_api/httpd:version${env.BUILD_ID}"
-                sh "docker push 192.168.50.25:5000/analytics/tweet_sentiment_api/httpd:version${env.BUILD_ID}"
+                script {
+                    docker.withRegistry("http://192.168.50.25:5000/analytics/", "	nexus-login") {
+                        buildImage.push("${env.BUILD_NUMBER}")
+                        buildImage.push("latest")
+                    }
+                }
                 echo '\n=====================\n[END] Docker Push to Nexus...\n=====================\n'
             }
         }
@@ -67,6 +71,7 @@ pipeline {
             steps {
                 echo '\n==============================\n[START] Cleanup and Removal...\n==============================\n'
                 echo 'Running docker rm...'
+                sh "docker rmi analytics/tweet_sentiment_api:${env.BUILD_ID}"
                 echo '\n============================\n[END] Cleanup and Removal...\n============================\n'
             }
         }
