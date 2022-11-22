@@ -42,7 +42,7 @@ pipeline {
                 echo '\n=======================\n[START] Docker Build...\n=======================\n'
                 echo 'Running docker build...'
                 script {
-                    def buildImage = docker.build("tweet_sentiment_api:${env.BUILD_ID}")
+                    buildImage = docker.build("tweet_sentiment_api:${env.BUILD_ID}")
                 }
                 echo '\n=====================\n[END] Docker Push to Nexus...\n=====================\n'
             }
