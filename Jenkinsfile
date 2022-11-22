@@ -52,7 +52,7 @@ pipeline {
                 echo '\n=======================\n[START] Docker Push to Nexus...\n=======================\n'
                 echo 'Tagging docker build...'
                 script {
-                    docker.withRegistry("http://192.168.50.25:5000/analytics/", "	nexus-login") {
+                    docker.withRegistry("https://192.168.50.25:5000/analytics/", "	nexus-login") {
                         buildImage.push("${env.BUILD_NUMBER}")
                         buildImage.push("latest")
                     }
