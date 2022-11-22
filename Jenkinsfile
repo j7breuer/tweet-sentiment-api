@@ -67,11 +67,11 @@ pipeline {
                 echo '\n=========================\n[END] Publishing Build...\n=========================\n'
             }
         }
-        stage('Environment Cleanup') {
+        stage('Docker Cleanup') {
             steps {
                 echo '\n==============================\n[START] Cleanup and Removal...\n==============================\n'
                 echo 'Running docker rm...'
-                echo "docker rmi analytics/tweet_sentiment_api:${env.BUILD_ID}"
+                sh "docker system prune --all --force"
                 echo '\n============================\n[END] Cleanup and Removal...\n============================\n'
             }
         }
