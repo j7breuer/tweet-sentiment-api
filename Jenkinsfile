@@ -42,7 +42,7 @@ pipeline {
                 echo '\n=======================\n[START] Docker Build...\n=======================\n'
                 echo 'Running docker build...'
                 script {
-                    def buildImage = docker.build("analytics/tweet_sentiment_api:${env.BUILD_ID}")
+                    def buildImage = docker.build("tweet_sentiment_api:${env.BUILD_ID}")
                 }
                 echo '\n=====================\n[END] Docker Push to Nexus...\n=====================\n'
             }
@@ -52,7 +52,7 @@ pipeline {
                 echo '\n=======================\n[START] Docker Push to Nexus...\n=======================\n'
                 echo 'Tagging docker build...'
                 script {
-                    docker.withRegistry("http://192.168.50.25:5000", "	nexus-login") {
+                    docker.withRegistry("http://192.168.50.25:5000/analytics/", "	nexus-login") {
                         buildImage.push("${env.BUILD_NUMBER}")
                         buildImage.push("latest")
                     }
