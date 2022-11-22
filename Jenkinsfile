@@ -42,7 +42,7 @@ pipeline {
                 echo '\n=======================\n[START] Docker Build...\n=======================\n'
                 echo 'Running docker build...'
                 script {
-                    def buildImage = docker.build("tweet_sentiment_api:${env.BUILD_ID}")
+                    buildImage = docker.build("tweet_sentiment_api:${env.BUILD_ID}")
                 }
                 echo '\n=====================\n[END] Docker Push to Nexus...\n=====================\n'
             }
@@ -71,7 +71,7 @@ pipeline {
             steps {
                 echo '\n==============================\n[START] Cleanup and Removal...\n==============================\n'
                 echo 'Running docker rm...'
-                sh "docker rmi analytics/tweet_sentiment_api:${env.BUILD_ID}"
+                echo "docker rmi analytics/tweet_sentiment_api:${env.BUILD_ID}"
                 echo '\n============================\n[END] Cleanup and Removal...\n============================\n'
             }
         }
