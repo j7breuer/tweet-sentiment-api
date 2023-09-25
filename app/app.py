@@ -14,7 +14,7 @@ import os
 tsc = TweetSentimentClassifier()
 sys.stdout.write(os.getcwd())
 # Load help messages
-with open("../app/data/metadata/help_metadata.json", encoding = "utf-8") as help_metadata:
+with open("./app/data/metadata/help_metadata.json", encoding = "utf-8") as help_metadata:
     help_metadata_json = json.load(help_metadata)
 
 # Load the API
@@ -108,4 +108,4 @@ class sentiment_batch(Resource):
 '''        
 
 if __name__ in "__main__":
-    app.run(host = '0.0.0.0', debug  = True)
+    app.run(host = '0.0.0.0', debug  = False)

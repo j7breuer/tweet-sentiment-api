@@ -22,9 +22,9 @@ def expected_sentiment_single():
                 "text": "YESSSSSSSSS!!!!!!!!!!! A BRAVE HEADER FROM LUIS DIAZ!!!!!!!!!!!"
             },
             "response": {
-                "Negative": 0.02395,
-                "Neutral": 0.078,
-                "Positive": 0.89806
+                "negative": 0.02395,
+                "neutral": 0.078,
+                "positive": 0.89806
             }
         },
         "message": "Successful sentiment analysis of text"
