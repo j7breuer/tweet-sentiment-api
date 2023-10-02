@@ -1,4 +1,3 @@
-
 # Tweet Sentiment Microservice [Beta]
 Flask API that provides tweet sentiment using the twitter-XLM-roBERTa-base model that is integrated into the <a href="https://github.com/cardiffnlp/tweetnlp">TweetNLP library</a>.  The HuggingFace page for the model used by the API can be found <a href="https://huggingface.co/cardiffnlp/twitter-xlm-roberta-base-sentiment">here</a>. 
 
