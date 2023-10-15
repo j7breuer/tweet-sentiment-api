@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        image-name = "${env.NEXUS}:5000/language-translation-api:latest",
-        container-name = "language-translation-api",
-        host-port = "4567",
+        image-name = "${env.NEXUS}:5000/language-translation-api:latest"
+        container-name = "language-translation-api"
+        host-port = "4567"
         container-port = "4567"
     }
 
