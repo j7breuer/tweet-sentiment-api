@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        image_name = "${env.NEXUS}:5000/language-translation-api:latest"
-        container_name = "language-translation-api"
-        host_port = "4567"
-        container_port = "4567"
+        image_name = "${env.NEXUS}:5000/tweet-sentiment-api:latest"
+        container_name = "tweet-sentiment-api"
+        host_port = "5000"
+        container_port = "5000"
     }
 
     stages {
