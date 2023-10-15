@@ -74,18 +74,16 @@ pipeline {
                 echo '\n===========================\n[START] Publishing Build...\n===========================\n'
                 echo 'Running docker push...'
                 sshagent(credentials: ['docker-login']) {
-                    withCredentials([usernamePassword(credentialsId: 'docker-login', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-                        sh """
-                            ssh -o StrictHostKeyChecking=no user@${env.DOCKER} "
-                                whoami
-                                docker stop ${container_name}
-                                docker rm ${container_name}
-                                docker pull ${image_name}
-                                docker run -d --name ${container_name} --restart=unless-stopped -p ${host_port}:${container_port} --privileged ${image_name}
-                                docker system prune -af
-                            "
-                        """
-                    }
+                    sh """
+                        ssh -o StrictHostKeyChecking=no user@${env.DOCKER} "
+                            whoami
+                            docker stop ${container_name}
+                            docker rm ${container_name}
+                            docker pull ${image_name}
+                            docker run -d --name ${container_name} --restart=unless-stopped -p ${host_port}:${container_port} --privileged ${image_name}
+                            docker system prune -af
+                        "
+                    """
                 }
                 echo '\n=========================\n[END] Publishing Build...\n=========================\n'
             }
