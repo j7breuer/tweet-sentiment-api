@@ -51,7 +51,7 @@ pipeline {
                 echo '\n=======================\n[START] Docker Build...\n=======================\n'
                 echo 'Running docker build...'
                 script {
-                    buildImage = docker.build("tweet_sentiment_api:${env.BUILD_ID}")
+                    buildImage = docker.build("${container_name}:${env.BUILD_ID}")
                 }
                 echo '\n=====================\n[END] Docker Build...\n=====================\n'
             }
