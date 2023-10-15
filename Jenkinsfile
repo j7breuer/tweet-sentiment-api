@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     environment {
-        image-name = "${env.NEXUS}:5000/language-translation-api:latest"
-        container-name = "language-translation-api"
-        host-port = "4567"
-        container-port = "4567"
+        image_name = "${env.NEXUS}:5000/language-translation-api:latest"
+        container_name = "language-translation-api"
+        host_port = "4567"
+        container_port = "4567"
     }
 
     stages {
@@ -78,10 +78,10 @@ pipeline {
                         sh """
                             ssh -o StrictHostKeyChecking=no user@${env.DOCKER} "
                                 whoami
-                                docker stop ${container-name}
-                                docker rm ${container-name}
-                                docker pull ${image-name}
-                                docker run -d --name ${container-name} --restart=unless-stopped -p ${host-port}:${container-port} --privileged ${image-name}
+                                docker stop ${container_name}
+                                docker rm ${container_name}
+                                docker pull ${image_name}
+                                docker run -d --name ${container_name} --restart=unless-stopped -p ${host_port}:${container_port} --privileged ${image_name}
                                 docker system prune -af
                             "
                         """
