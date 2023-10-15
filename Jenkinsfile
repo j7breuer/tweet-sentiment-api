@@ -74,16 +74,19 @@ pipeline {
                 echo '\n===========================\n[START] Publishing Build...\n===========================\n'
                 echo 'Running docker push...'
                 sshagent(credentials: ['docker-login']) {
-                    sh """
-                        ssh -o StrictHostKeyChecking=no user@${env.DOCKER} "
-                            whoami
-                            docker stop ${container_name}
-                            docker rm ${container_name}
-                            docker pull ${image_name}
-                            docker run -d --name ${container_name} --restart=unless-stopped -p ${host_port}:${container_port} --privileged ${image_name}
-                            docker system prune -af
-                        "
-                    """
+                    withCredentials([usernamePassword(credentialsId: 'nexus-login', passwordVariable: 'NEXUS_PASSWORD', usernameVariable: 'NEXUS_USERNAME')]) {
+                        sh """
+                            ssh -o StrictHostKeyChecking=no user@${env.DOCKER} "
+                                docker stop ${container_name}
+                                docker rm ${container_name}
+                                docker login -u ${NEXUS_USERNAME} -p ${NEXUS_PASSWORD} ${env.NEXUS}:5000
+                                docker pull ${image_name}
+                                docker run -d --name ${container_name} --restart=unless-stopped -p ${host_port}:${container_port} --privileged ${image_name}
+                                docker system prune -af
+                                docker logout
+                            "
+                        """
+                    }
                 }
                 echo '\n=========================\n[END] Publishing Build...\n=========================\n'
             }
